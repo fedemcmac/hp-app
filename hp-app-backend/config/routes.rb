@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   resources :houses, only: [:index, :show]
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
-  post '/questions/:id/check', to: 'questions#check_answer'
-
+  get '/questions/:id/check/:answer_id', to: 'questions#check_answer'
 end
