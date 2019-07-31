@@ -133,6 +133,7 @@ function createDoorSound() {
 
 function askQuestion(gameQuestion) {
   createDoorSound();
+
   questionP.innerHTML = gameQuestion.content;
   for (let answer of gameQuestion.answers) {
     const answerP = document.createElement("p");
