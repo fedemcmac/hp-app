@@ -19,6 +19,9 @@ House.create(name: "Ravenclaw")
 House.create(name: "Slytherin")
 
 User.create(name: "Bob", house_id: House.all.sample.id)
+User.create(name: "Fede", house_id: House.all.sample.id)
+User.create(name: "Nick", house_id: House.all.sample.id)
+User.create(name: "Bombo", house_id: House.all.sample.id)
 
 q1 = Question.create(content: "How does Harry manage to breathe underwater during the second task of the Triwizard Tournament?" )
 

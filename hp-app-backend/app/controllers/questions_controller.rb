@@ -14,10 +14,10 @@ class QuestionsController < ApplicationController
         }, :except => [:created_at, :updated_at])            
     end
 
-    def is_answer_correct
+    def check_answer
         # /questions/1 {"answer_id": "2"}
-        is_correct = Answer.where(question_id: params[:id], is_correct: true).id == params["answer_id"]
-        return json: {"is_correct": is_correct}
+        question = Question.find(params[:id])
+        is_correct = question.is_answer_correct?(answer_id)
     end
 
 end
