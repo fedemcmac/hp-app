@@ -17,7 +17,8 @@ class QuestionsController < ApplicationController
     def check_answer
         # /questions/1 {"answer_id": "2"}
         question = Question.find(params[:id])
-        is_correct = question.is_answer_correct?(answer_id)
+        is_correct = question.is_answer_correct?(params[:answer_id])
+        render json: {is_correct: is_correct}
     end
 
 end

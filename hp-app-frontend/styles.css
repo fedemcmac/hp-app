@@ -7,3 +7,78 @@ div.quiz-body {
   width: 100%;
   height: 100px;
 }
+
+@-webkit-keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+p#question.fadeInOut {
+  -webkit-animation: fadeInOut 3.5s;
+  animation: fadeInOut 3.5s;
+}
+
+p#question {
+  animation-name: none;
+}
+
+p#question.fadeIn {
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+}
+
+p#question.fadeInOut {
+  -webkit-animation: fadeInOut 3.5s;
+  animation: fadeInOut 3.5s;
+}
+
+button#submit {
+  animation-name: none;
+}
+
+button#submit.fadeIn {
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+}
+
+input#name {
+  animation-name: none;
+}
+
+input#name.fadeIn {
+  -webkit-animation: fadeIn 2s;
+  animation: fadeIn 2s;
+}

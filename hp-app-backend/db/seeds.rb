@@ -1,5 +1,3 @@
-# Answer.where(question_id: 1, correct: true)
-
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 #
@@ -34,49 +32,49 @@ q2 = Question.create(content: "What is the name of Fred and George's joke shop?"
 
 Answer.create(content: "WEASLEY JOKE EMPORIUM".titleize, correct: false, question_id: q2.id)
 Answer.create(content: "WEASLEYS' WIZARD WHEEZES".titleize, correct: true, question_id: q2.id)
-Answer.create(content: "FRED & GEORGE'S WONDER EMPORIUM".titleize, correct: true, question_id: q2.id)
+Answer.create(content: "FRED & GEORGE'S WONDER EMPORIUM".titleize, correct: false, question_id: q2.id)
 Answer.create(content: "ZONKO'S JOKE SHOP".titleize, correct: false, question_id: q2.id)
 
 q3 = Question.create(content: "Which of these is NOT one of the Unforgivable Curses?" )
 
 Answer.create(content: "CRUCIATUS".titleize, correct: false, question_id: q3.id)
 Answer.create(content: "IMPERIUS".titleize, correct: false, question_id: q3.id)
-Answer.create(content: "AVADA KEDAVRA".titleize, correct: true, question_id: q3.id)
+Answer.create(content: "AVADA KEDAVRA".titleize, correct: false, question_id: q3.id)
 Answer.create(content: "SECTUMSEMPRA".titleize, correct: true, question_id: q3.id)
 
 q4 = Question.create(content: "Who guards the entrance to the Gryffindor common room?" )
 
 Answer.create(content: "THE GREY LADY".titleize, correct: false, question_id: q4.id)
 Answer.create(content: "THE FAT FRIAR".titleize, correct: false, question_id: q4.id)
-Answer.create(content: "THE BLOODY BARON".titleize, correct: true, question_id: q4.id)
+Answer.create(content: "THE BLOODY BARON".titleize, correct: false, question_id: q4.id)
 Answer.create(content: "THE FAT LADY".titleize, correct: true, question_id: q4.id)
 
 q5 = Question.create(content: "What does Ron see in the Mirror of Erised?" )
 
 Answer.create(content: "HIMSELF KISSING HERMIONE".titleize, correct: false, question_id: q5.id)
 Answer.create(content: "HIMSELF WITH LOTS OF MONEY".titleize, correct: false, question_id: q5.id)
-Answer.create(content: "HIMSELF WITH HARRY'S LIGHTNING BOLT SCAR".titleize, correct: true, question_id: q5.id)
+Answer.create(content: "HIMSELF WITH HARRY'S LIGHTNING BOLT SCAR".titleize, correct: false, question_id: q5.id)
 Answer.create(content: "HIMSELF HOLDING THE QUIDDITCH CUP".titleize, correct: true, question_id: q5.id)
 
 q6 = Question.create(content: "Who is NOT a member of the Order of the Phoenix?" )
 
 Answer.create(content: "CORNELIUS FUDGE".titleize, correct: true, question_id: q6.id)
 Answer.create(content: "MAD-EYE MOODY".titleize, correct: false, question_id: q6.id)
-Answer.create(content: "PROFESSOR SNAPE".titleize, correct: true, question_id: q6.id)
+Answer.create(content: "PROFESSOR SNAPE".titleize, correct: false, question_id: q6.id)
 Answer.create(content: "REMUS LUPIN".titleize, correct: false, question_id: q6.id)
 
 q7 = Question.create(content: "What does O.W.L. stand for?" )
 
 Answer.create(content: "ORDINARY WIZARDING LEVEL".titleize, correct: true, question_id: q7.id)
 Answer.create(content: "OFFICIAL WIZARDING LEVEL".titleize, correct: false, question_id: q7.id)
-Answer.create(content: "OUTSTANDING WIZARD LEARNING".titleize, correct: true, question_id: q7.id)
+Answer.create(content: "OUTSTANDING WIZARD LEARNING".titleize, correct: false, question_id: q7.id)
 Answer.create(content: "OUTSTANDING WONDERFUL LUCK".titleize, correct: false, question_id: q7.id)
 
 q8 = Question.create(content: "A wizard who cannot do magic is known as a:" )
 
 Answer.create(content: "BLEAKER".titleize, correct: false, question_id: q8.id)
 Answer.create(content: "SQUIB".titleize, correct: true, question_id: q8.id)
-Answer.create(content: "DUDDLE".titleize, correct: true, question_id: q8.id)
+Answer.create(content: "DUDDLE".titleize, correct: false, question_id: q8.id)
 Answer.create(content: "WIZONT".titleize, correct: false, question_id: q8.id)
 
 q9 = Question.create(content: "What does the spell 'Obliviate' do?" )
@@ -223,7 +221,7 @@ q28 = Question.create(content: "Who is the Headmistress of Beauxbatons?" )
 
 Answer.create(content: "MADAME ROSMERTA".titleize, correct: false, question_id: q28.id)
 Answer.create(content: "FLEUR DELACOUR".titleize, correct: false, question_id: q28.id)
-Answer.create(content: "MADAME MAXIME".titleize, correct: false, question_id: q28.id)
+Answer.create(content: "MADAME MAXIME".titleize, correct: true, question_id: q28.id)
 Answer.create(content: "PERENELLE FLAMEL".titleize, correct: false, question_id: q28.id)
 
 q29 = Question.create(content: "Which of the Hogwarts founders originally owned the sorting hat?" )
@@ -272,7 +270,7 @@ q35 = Question.create(content: "Who is the 'Half-Blood Prince'?" )
 
 Answer.create(content: "SIRIUS BLACK".titleize, correct: false, question_id: q35.id)
 Answer.create(content: "LUCIUS MALFOY".titleize, correct: false, question_id: q35.id)
-Answer.create(content: "PROFESSOR SNAPE".titleize, correct: false, question_id: q35.id)
+Answer.create(content: "PROFESSOR SNAPE".titleize, correct: true, question_id: q35.id)
 Answer.create(content: "VOLDEMORT".titleize, correct: false, question_id: q35.id)
 
 q36 = Question.create(content: "Which of these is not one of the Deathly Hallows?" )
@@ -293,7 +291,7 @@ q38 = Question.create(content: "What form does Snape's Patronus take?" )
 
 Answer.create(content: "UNICORN".titleize, correct: false, question_id: q38.id)
 Answer.create(content: "SNAKE".titleize, correct: false, question_id: q38.id)
-Answer.create(content: "DOE".titleize, correct: false, question_id: q38.id)
+Answer.create(content: "DOE".titleize, correct: true, question_id: q38.id)
 Answer.create(content: "DRAGON".titleize, correct: false, question_id: q38.id)
 
 q39 = Question.create(content: "Harry is originally told his parents died how?" )
