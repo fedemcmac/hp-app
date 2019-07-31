@@ -120,7 +120,19 @@ function nextQuestion() {
     : askQuestion(gameQuestions.pop());
 }
 
+function createDoorSound() {
+  const doorSound = document.createElement("embed");
+
+  doorSound.src = "squeaky_door.mp3";
+  doorSound.autostart = true;
+  doorSound.id = "doorSound";
+  doorSound.width = 0;
+  doorSound.height = 0;
+  document.querySelector(".sounds").appendChild(doorSound);
+}
+
 function askQuestion(gameQuestion) {
+  createDoorSound();
   questionP.innerHTML = gameQuestion.content;
   for (let answer of gameQuestion.answers) {
     const answerP = document.createElement("p");
@@ -149,12 +161,16 @@ function deductLife() {
   if (user.lives === 0) {
     gameOver(false);
   }
-  questionP.innerHTML = "Oh dear, wrong answer";
   user.lives -= 1;
+  questionP.innerHTML = `Oh dear, wrong answer<br>You have ${
+    user.lives
+  } lives left`;
+
   setTimeout(nextQuestion, 2000);
 }
 
 function displayResult(result) {
+  document.querySelector("#doorSound").remove();
   document
     .querySelectorAll(".answer")
     .forEach(e => e.parentNode.removeChild(e));
