@@ -33,7 +33,9 @@ function restartAnimation(element, removeClass = "fadeIn") {
 }
 
 function askName() {
+ 
   restartAnimation(questionP, "fadeInOut");
+  
   questionP.innerHTML = "What's your name?";
 
   const nameInput = document.createElement("input");
@@ -77,6 +79,7 @@ function postUser(username) {
 }
 
 function userCreated(userObj) {
+  nameDiv = document.querySelector('.top-left')
   user = userObj;
   restartAnimation(questionP);
   questionP.innerHTML = `Greetings ${
@@ -85,6 +88,7 @@ function userCreated(userObj) {
   document.querySelector("input").remove();
   submitBtn.style.display = "none";
   setTimeout(startGameMessage, 3000);
+nameDiv.innerText = userObj.name
 }
 
 function startGameMessage() {
