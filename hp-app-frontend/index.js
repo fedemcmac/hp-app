@@ -267,7 +267,7 @@ function gameOver(won) {
       user.house.name
     } students can be rather forgiving.`;
   }
-  setHighscore();
+  setTimeout(setHighscore, 3500);
 }
 
 function setHighscore() {
@@ -289,6 +289,7 @@ function persistScore(score) {
     body: JSON.stringify(scoreData)
   };
 
-  fetch(usersURL + `/${user.id}`, configObj).then(resp => resp.json());
-  fetchUsers();
+  fetch(usersURL + `/${user.id}`, configObj)
+    .then(resp => resp.json())
+    .then(data => fetchUsers());
 }

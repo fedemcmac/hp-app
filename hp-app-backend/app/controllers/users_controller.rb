@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     def index
-        users = User.all
+        users = User.all.where("high_score > ?", 0).order(high_score: :desc).limit(10)
         render json: users
     end
 
