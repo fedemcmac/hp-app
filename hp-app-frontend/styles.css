@@ -1,5 +1,9 @@
 body {
   height: 100%;
+  background: url("old_paper_background.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 td {

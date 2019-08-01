@@ -16,10 +16,10 @@ House.create(name: "Hufflepuff")
 House.create(name: "Ravenclaw")
 House.create(name: "Slytherin")
 
-User.create(name: "Bob", house_id: House.all.sample.id)
-User.create(name: "Fede", house_id: House.all.sample.id)
-User.create(name: "Nick", house_id: House.all.sample.id)
-User.create(name: "Bombo", house_id: House.all.sample.id)
+User.create(name: "Bob", house_id: House.all.sample.id, high_score: 8)
+User.create(name: "Fede", house_id: House.all.sample.id, high_score: 6)
+User.create(name: "Nick", house_id: House.all.sample.id, high_score: 4)
+User.create(name: "Bombo", house_id: House.all.sample.id, high_score: 3)
 
 q1 = Question.create(content: "How does Harry manage to breathe underwater during the second task of the Triwizard Tournament?" )
 
