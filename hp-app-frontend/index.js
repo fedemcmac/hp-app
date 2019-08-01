@@ -1,25 +1,71 @@
 const quizDiv = document.querySelector("div#quiz-body");
+const scoreDiv = document.querySelector("div#score");
+const livesDiv = document.querySelector("div#lives");
 const questionP = document.querySelector("p#question");
 const quizForm = document.querySelector("form");
 const submitBtn = document.querySelector("button#submit");
+
+const leaderboardBtnDiv = document.querySelector("div#see_leaderboard");
+leaderboardBtnDiv.innerText = "Leaderboard";
+leaderboardBtnDiv.style.display = "none";
+
+leaderboardBtnDiv.addEventListener("click", fetchUsers);
+
+function fetchUsers() {
+  fetch("http://localhost:3000/users")
+    .then(resp => resp.json())
+    .then(data => showLeaderboard(data));
+}
+
+function showLeaderboard(users) {
+  setLeaderboardTable();
+
+  leaderboardTBody = document.querySelector("tbody");
+  for (let user of users) {
+    userTr = document.createElement("tr");
+
+    nameTd = document.createElement("td");
+    nameTd.innerText = user.name;
+
+    houseTd = document.createElement("td");
+    houseTd.innerText = user.house.name;
+
+    high_scoreTd = document.createElement("td");
+    high_scoreTd.innerText = user.highscore;
+
+    userTr.append(nameTd, houseTd, high_scoreTd);
+
+    leaderboardTBody.appendChild(userTr);
+  }
+}
+
+function setLeaderboardTable() {
+  quizForm.style.display = "none";
+  const leaderboardTable = document.createElement("table");
+  quizDiv.appendChild(leaderboardTable);
+  leaderboardTable.innerHTML = `<thead><tr>
+  <th>Username</th><th>House</th><th>High Score</th>
+  </tr></thead><tbody></tbody>`;
+}
+
+submitBtn.style.display = "none";
+
 let gameQuestions;
 let questions;
 let user;
-
-submitBtn.style.display = "none";
 
 const usersURL = "http://localhost:3000/users";
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchAllQuestions();
-  setTimeout(welcome);
-  setTimeout(askName, 3000);
+  welcome();
 });
 
-function fetchAllQuestions(questionsURL) {
+function fetchAllQuestions() {
   fetch("http://localhost:3000/questions")
     .then(resp => resp.json())
     .then(data => (questions = data));
+  setTimeout(askName, 3000);
 }
 
 function welcome() {
@@ -33,7 +79,7 @@ function restartAnimation(element, removeClass = "fadeIn") {
 }
 
 function askName() {
- 
+  leaderboardBtnDiv.style.display = "block";
   restartAnimation(questionP, "fadeInOut");
   
   questionP.innerHTML = "What's your name?";
@@ -45,7 +91,7 @@ function askName() {
   nameInput.placeholder = "Your name";
 
   submitBtn.innerText = "Submit Name";
-  submitBtn.style.display = "block";
+  submitBtn.style.display = "initial";
 
   restartAnimation(submitBtn);
   restartAnimation(nameInput);
@@ -62,6 +108,7 @@ function sendUserToBackend(event) {
 }
 
 function postUser(username) {
+  leaderboardBtnDiv.style.display = "none";
   userData = { name: username };
 
   let configObj = {
@@ -87,8 +134,8 @@ function userCreated(userObj) {
   }, the sorting hat has assigned you to the house of ${userObj.house.name}`;
   document.querySelector("input").remove();
   submitBtn.style.display = "none";
-  setTimeout(startGameMessage, 3000);
-nameDiv.innerText = userObj.name
+  setTimeout(startGameMessage, 4500);
+  nameDiv.innerText = userObj.name
 }
 
 function startGameMessage() {
@@ -100,10 +147,10 @@ function startGameMessage() {
       playGame();
     });
   questionP.innerHTML =
-    "As you solemnly swear to be up to no good...<br>You have 10 seconds to pick the correct answer for each question.<br>You only have 3 lives.<br>Good luck<br>Click anywhere to begin";
+    "As you solemnly swear to be up to no good...<br>You only have 3 lives.<br>Good luck<br>Click anywhere to begin";
 }
 
-//////////////////////////////// GAME FUNCTIONS //////////////////////////////
+//////////////////////////////// GAME FUNCTIONS ///////////////////////////////////
 
 function shuffle(array) {
   return array.sort(() => Math.random() - 0.5);
@@ -124,7 +171,22 @@ function nextQuestion() {
     : askQuestion(gameQuestions.pop());
 }
 
+function createDoorSound() {
+  const doorSound = document.createElement("embed");
+
+  doorSound.src = "squeaky_door.mp3";
+  doorSound.autostart = true;
+  doorSound.id = "doorSound";
+  doorSound.width = 0;
+  doorSound.height = 0;
+  document.querySelector(".sounds").appendChild(doorSound);
+}
+
 function askQuestion(gameQuestion) {
+  livesDiv.innerText = `Lives: ${user.lives}`;
+  scoreDiv.innerText = `Score: ${user.score}`;
+  createDoorSound();
+
   questionP.innerHTML = gameQuestion.content;
   for (let answer of gameQuestion.answers) {
     const answerP = document.createElement("p");
@@ -145,20 +207,26 @@ function checkAnswer(answer_id, question_id) {
 
 function addScore() {
   user.score += 1;
-  questionP.innerHTML = `One point to ${user.house.name}!`;
+  scoreDiv.innerText = `Score: ${user.score}`;
+  questionP.innerHTML = `One point to ${user.name} of ${user.house.name}!`;
   setTimeout(nextQuestion, 2000);
 }
 
 function deductLife() {
   if (user.lives === 0) {
     gameOver(false);
+  } else {
+    user.lives -= 1;
+    livesDiv.innerText = `Lives: ${user.lives}`;
+    questionP.innerHTML = `Oh dear, wrong answer<br>You have ${
+      user.lives
+    } lives left`;
   }
-  questionP.innerHTML = "Oh dear, wrong answer";
-  user.lives -= 1;
   setTimeout(nextQuestion, 2000);
 }
 
 function displayResult(result) {
+  document.querySelector("#doorSound").remove();
   document
     .querySelectorAll(".answer")
     .forEach(e => e.parentNode.removeChild(e));
@@ -171,8 +239,24 @@ function displayResult(result) {
 }
 
 function gameOver(won) {
-  debugger;
+  if (won === true) {
+    questionP.innerHTML = `Well done. You made ${user.house} proud.`;
+    setHighscore();
+  } else {
+    questionP.innerHTML = `Your game ends here, but all is not lost. And I heard ${
+      user.house.name
+    } students can be rather forgiving.`;
+    setHighscore;
+    fetchUsers;
+  }
   // send score to backend
   // if won do stuff
   // else lost do stuff
+}
+
+function setHighscore() {
+  if (user.score > user.high_score) {
+    user.high_score = user.score;
+    user.score = 0;
+  }
 }

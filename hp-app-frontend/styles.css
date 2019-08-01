@@ -1,15 +1,41 @@
-div.quiz-body {
-  position: absolute;
-  top: 7rem;
-  left: 7rem;
-  right: 7rem;
-  
-  width: 800px;
-  margin:0 auto; 
+body {
+  height: 100%;
+}
+
+td {
+  width: 20rem;
   text-align: center;
+  /* margin-left: 3rem; */
+  /* margin-right: 3rem; */
+}
+
+div#score {
+  position: relative;
+  float: left;
+  top: 0px;
+}
+
+div#lives {
+  position: relative;
+  float: right;
+  top: 0px;
+}
+
+div#see_leaderboard {
+  position: absolute;
+  bottom: 0px;
+  right: 10px;
+}
+
+div.quiz-body {
   display: flex;
-  
-  
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+form {
+  text-align: center;
 }
 
 div.container img {
