@@ -11,7 +11,6 @@ class UsersController < ApplicationController
     end
 
     def create
-
         user = User.find_by(name: params[:name])
         if user 
             user.score = 0
@@ -22,6 +21,17 @@ class UsersController < ApplicationController
             user = User.create(name: params[:name], house_id: house_id, lives: 3, score: 0) 
         end
         
+        render json: user
+    end
+
+    def high_score=
+
+    end
+
+    def update
+        user = User.find_by(id: params[:id])
+        user.high_score = params[:high_score]
+        user.save
         render json: user
     end
 
