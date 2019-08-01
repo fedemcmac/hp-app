@@ -58,14 +58,14 @@ const usersURL = "http://localhost:3000/users";
 
 document.addEventListener("DOMContentLoaded", () => {
   fetchAllQuestions();
-  setTimeout(welcome);
-  setTimeout(askName, 3000);
+  welcome();
 });
 
 function fetchAllQuestions() {
   fetch("http://localhost:3000/questions")
     .then(resp => resp.json())
     .then(data => (questions = data));
+  setTimeout(askName, 3000);
 }
 
 function welcome() {
