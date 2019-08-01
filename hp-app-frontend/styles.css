@@ -1,11 +1,41 @@
-div.quiz-body {
+body {
+  height: 100%;
+}
+
+td {
+  width: 20rem;
+  text-align: center;
+  /* margin-left: 3rem; */
+  /* margin-right: 3rem; */
+}
+
+div#score {
+  position: relative;
+  float: left;
+  top: 0px;
+}
+
+div#lives {
+  position: relative;
+  float: right;
+  top: 0px;
+}
+
+div#see_leaderboard {
   position: absolute;
-  top: 40%;
-  left: 50%;
-  margin-top: -50px;
-  margin-left: -50px;
-  width: 100%;
-  height: 100px;
+  bottom: 0px;
+  right: 10px;
+}
+
+div.quiz-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+form {
+  text-align: center;
 }
 
 @-webkit-keyframes fadeIn {

@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 20190730150341) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.integer "lives"
-    t.integer "score"
+    t.integer "lives", default: 0
+    t.integer "score", default: 0
     t.integer "high_score", default: 0
     t.integer "house_id"
     t.datetime "created_at", null: false

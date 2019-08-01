@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,7 +18,10 @@
       }
     </style>
   </head>
-  <body>
+  <body background="old_paper_background.jpg">
+    <div id="score"></div>
+    <div id="see_leaderboard"></div>
+    <div id="lives"></div>
     <div id="quiz-body" class="quiz-body">
       <form>
         <p id="question" class="fadeInOut"></p>
@@ -28,12 +31,12 @@
 
     <script src="./index.js"></script>
     <div class="sounds"></div>
-    <embed
+    <!-- <embed
       name="background_music"
       src="background_music.mp3"
       width="0"
       height="0"
       autostart="true"
-    />
+    /> -->
   </body>
 </html>
