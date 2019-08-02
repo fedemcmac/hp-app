@@ -4,20 +4,48 @@ const livesDiv = document.querySelector("div#lives");
 const questionP = document.querySelector("p#question");
 const quizForm = document.querySelector("form");
 const submitBtn = document.querySelector("button#submit");
+const usersURL = "http://localhost:3000/users";
 
 const leaderboardBtnDiv = document.querySelector("div#see_leaderboard");
 leaderboardBtnDiv.innerText = "Leaderboard";
 leaderboardBtnDiv.style.display = "none";
 
-leaderboardBtnDiv.addEventListener("click", fetchUsers);
+leaderboardBtnDiv.addEventListener("click", function handler(event) {
+  event.target.removeEventListener("click", handler);
+  fetchUsers();
+});
+
+submitBtn.style.display = "none";
+
+let gameQuestions;
+let questions;
+let user;
 
 function fetchUsers() {
-  fetch("http://localhost:3000/users")
+  fetch(usersURL)
     .then(resp => resp.json())
     .then(data => showLeaderboard(data));
 }
 
+function backToMenu() {
+  document.querySelector("table").remove();
+  restartAnimation(questionP, "fadeIn");
+  quizForm.style.display = "block";
+  leaderboardBtnDiv.addEventListener("click", function handler(event) {
+    leaderboardBtnDiv.innerText = "Leaderboard";
+    event.target.removeEventListener("click", handler);
+
+    fetchUsers();
+  });
+}
+
 function showLeaderboard(users) {
+  leaderboardBtnDiv.innerText = "Main menu";
+
+  leaderboardBtnDiv.addEventListener("click", function handler(event) {
+    event.target.removeEventListener("click", handler);
+    backToMenu();
+  });
   setLeaderboardTable();
 
   leaderboardTBody = document.querySelector("tbody");
@@ -31,7 +59,7 @@ function showLeaderboard(users) {
     houseTd.innerText = user.house.name;
 
     high_scoreTd = document.createElement("td");
-    high_scoreTd.innerText = user.highscore;
+    high_scoreTd.innerText = user.high_score;
 
     userTr.append(nameTd, houseTd, high_scoreTd);
 
@@ -48,16 +76,7 @@ function setLeaderboardTable() {
   </tr></thead><tbody></tbody>`;
 }
 
-submitBtn.style.display = "none";
-
-let gameQuestions;
-let questions;
-let user;
-
-const usersURL = "http://localhost:3000/users";
-
 document.addEventListener("DOMContentLoaded", () => {
-  fetchAllQuestions();
   welcome();
 });
 
@@ -70,6 +89,7 @@ function fetchAllQuestions() {
 
 function welcome() {
   questionP.innerText = "Welcome";
+  fetchAllQuestions();
 }
 
 function restartAnimation(element, removeClass = "fadeIn") {
@@ -109,7 +129,7 @@ function sendUserToBackend(event) {
 
 function postUser(username) {
   leaderboardBtnDiv.style.display = "none";
-  userData = { name: username };
+  const userData = { name: username };
 
   let configObj = {
     method: "POST",
@@ -157,7 +177,7 @@ function shuffle(array) {
 }
 
 function getGameQuestions() {
-  return shuffle(questions).slice(-13);
+  return shuffle(questions).slice(-10);
 }
 
 function playGame() {
@@ -208,8 +228,10 @@ function checkAnswer(answer_id, question_id) {
 function addScore() {
   user.score += 1;
   scoreDiv.innerText = `Score: ${user.score}`;
-  questionP.innerHTML = `One point to ${user.name} of ${user.house.name}!`;
-  setTimeout(nextQuestion, 2000);
+  questionP.innerHTML = `Jolly good ${user.name}, one point to ${
+    user.house.name
+  }!`;
+  setTimeout(nextQuestion, 1500);
 }
 
 function deductLife() {
@@ -221,8 +243,8 @@ function deductLife() {
     questionP.innerHTML = `Oh dear, wrong answer<br>You have ${
       user.lives
     } lives left`;
+    setTimeout(nextQuestion, 1500);
   }
-  setTimeout(nextQuestion, 2000);
 }
 
 function displayResult(result) {
@@ -240,23 +262,37 @@ function displayResult(result) {
 
 function gameOver(won) {
   if (won === true) {
-    questionP.innerHTML = `Well done. You made ${user.house} proud.`;
-    setHighscore();
+    questionP.innerHTML = `You won! Well done, you made ${
+      user.house.name
+    } proud.`;
   } else {
     questionP.innerHTML = `Your game ends here, but all is not lost. And I heard ${
       user.house.name
     } students can be rather forgiving.`;
-    setHighscore;
-    fetchUsers;
   }
-  // send score to backend
-  // if won do stuff
-  // else lost do stuff
+  setTimeout(setHighscore, 3500);
 }
 
 function setHighscore() {
   if (user.score > user.high_score) {
-    user.high_score = user.score;
-    user.score = 0;
+    persistScore(user.score);
   }
+}
+
+function persistScore(score) {
+  const scoreData = { high_score: score };
+  debugger;
+
+  let configObj = {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json"
+    },
+    body: JSON.stringify(scoreData)
+  };
+
+  fetch(usersURL + `/${user.id}`, configObj)
+    .then(resp => resp.json())
+    .then(data => fetchUsers());
 }
