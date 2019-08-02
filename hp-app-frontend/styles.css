@@ -19,21 +19,22 @@ td {
 }
 
 div#score {
-  position: relative;
+  position: absolute;
   float: left;
-  top: 0px;
+  top: 0rem;
 }
 
 div#lives {
-  position: relative;
+  position: absolute;
   float: right;
-  top: 0px;
+  top: 0rem;
+  right: 0rem;
 }
 
 div#see_leaderboard {
   position: absolute;
-  bottom: 0px;
-  right: 10px;
+  bottom: 0rem;
+  right: 10rem;
 }
 
 div.quiz-body {
@@ -46,6 +47,26 @@ div.quiz-body {
 form {
   text-align: center;
 }
+
+div.container img {
+  position:absolute;
+   top:0rem;
+   right: 37%;
+   
+   height:25%;
+   width: 30%;
+   z-index:0 ;
+   
+} 
+.top-left.fadeIn {
+  position: absolute;
+  top: 2.65rem;
+  right: 42%;
+  left: 45%;
+  z-index:2 ;
+}
+
+
 
 @-webkit-keyframes fadeIn {
   from {
@@ -92,6 +113,9 @@ p#question.fadeInOut {
 
 p#question {
   animation-name: none;
+  margin-left: 5rem;
+  margin-right: 5rem;
+ display: flex; 
 }
 
 p#question.fadeIn {
@@ -106,6 +130,7 @@ p#question.fadeInOut {
 
 button#submit {
   animation-name: none;
+  margin-left: 40%;
 }
 
 button#submit.fadeIn {
