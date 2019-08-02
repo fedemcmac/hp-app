@@ -10,21 +10,22 @@ td {
 }
 
 div#score {
-  position: relative;
+  position: absolute;
   float: left;
-  top: 0px;
+  top: 0rem;
 }
 
 div#lives {
-  position: relative;
+  position: absolute;
   float: right;
-  top: 0px;
+  top: 0rem;
+  right: 0rem;
 }
 
 div#see_leaderboard {
   position: absolute;
-  bottom: 0px;
-  right: 10px;
+  bottom: 0rem;
+  right: 10rem;
 }
 
 div.quiz-body {
@@ -41,17 +42,18 @@ form {
 div.container img {
   position:absolute;
    top:0rem;
-   right:0rem;
+   right: 37%;
+   
    height:25%;
-   width: 25%;
+   width: 30%;
    z-index:0 ;
    
 } 
 .top-left.fadeIn {
   position: absolute;
-  top: 2.2rem;
-  right: 8.5rem;
-  
+  top: 2.65rem;
+  right: 42%;
+  left: 45%;
   z-index:2 ;
 }
 
