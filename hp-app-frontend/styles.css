@@ -4,6 +4,11 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+
+  /* background: url("vintage-background.jpg"); */
+  /* background-position: unset;
+  background-repeat: no-repeat;
+  background-size: cover; */
 }
 
 td {
