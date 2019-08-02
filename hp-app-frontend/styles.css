@@ -1,12 +1,12 @@
 body {
   height: 100%;
-  background: url("old_paper_background.jpg");
+  background: url("images/old_paper_background.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 
-  /* background: url("vintage-background.jpg"); */
-  /* background-position: unset;
+  /* background: url("images/vintage-background.jpg");
+  background-position: unset;
   background-repeat: no-repeat;
   background-size: cover; */
 }
@@ -106,6 +106,7 @@ p#question.fadeInOut {
 
 button#submit {
   animation-name: none;
+  font-family: "IM Fell DW Pica SC", serif;
 }
 
 button#submit.fadeIn {

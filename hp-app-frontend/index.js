@@ -191,7 +191,7 @@ function nextQuestion() {
 function createDoorSound() {
   const doorSound = document.createElement("embed");
 
-  doorSound.src = "squeaky_door.mp3";
+  doorSound.src = "sounds/squeaky_door.mp3";
   doorSound.autostart = true;
   doorSound.id = "doorSound";
   doorSound.width = 0;
@@ -277,7 +277,6 @@ function setHighscore() {
 
 function persistScore(score) {
   const scoreData = { high_score: score };
-  debugger;
 
   let configObj = {
     method: "PATCH",
