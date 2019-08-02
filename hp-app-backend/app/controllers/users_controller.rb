@@ -24,21 +24,10 @@ class UsersController < ApplicationController
         render json: user
     end
 
-    def high_score=
-
-    end
-
     def update
         user = User.find_by(id: params[:id])
         user.high_score = params[:high_score]
         user.save
         render json: user
     end
-
-    # private
-
-    # def user_params
-    #     params.require(:name).permit(:name)
-    # end
-
 end

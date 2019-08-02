@@ -164,7 +164,7 @@ function startGameMessage() {
       playGame();
     });
   questionP.innerHTML =
-    "As you solemnly swear to be up to no good...<br>You only have 3 lives.<br>Good luck<br>Click anywhere to begin";
+    "As you solemnly swear to be up to no good...<br>You have 3 lives.<br>Good luck<br>Click anywhere to begin";
 }
 
 //////////////////////////////// GAME FUNCTIONS ///////////////////////////////////
@@ -254,7 +254,6 @@ function displayResult(result) {
   } else {
     deductLife();
   }
-  // setTimeout(nextQuestion(), 2000)
 }
 
 function gameOver(won) {
