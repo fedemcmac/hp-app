@@ -25,6 +25,8 @@ gem 'puma', '~> 3.7'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+#added nokogiri for vulnerability issue in version 1.10.4
+gem "nokogiri", ">= 1.10.4"
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 gem 'rack-cors'
 gem 'active_model_serializers'

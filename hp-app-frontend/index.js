@@ -31,8 +31,8 @@ function backToMenu() {
   document.querySelector("table").remove();
   restartAnimation(questionP, "fadeIn");
   quizForm.style.display = "block";
+  leaderboardBtnDiv.innerText = "Leaderboard";
   leaderboardBtnDiv.addEventListener("click", function handler(event) {
-    leaderboardBtnDiv.innerText = "Leaderboard";
     event.target.removeEventListener("click", handler);
 
     fetchUsers();
@@ -262,7 +262,7 @@ function gameOver(won) {
       user.house.name
     } proud.`;
   } else {
-    questionP.innerHTML = `Your game ends here, but all is not lost. And I heard ${
+    questionP.innerHTML = `Your game ends here, but all is not lost.<br>I heard ${
       user.house.name
     } students can be rather forgiving.`;
   }
@@ -273,6 +273,7 @@ function setHighscore() {
   if (user.score > user.high_score) {
     persistScore(user.score);
   }
+  setTimeout(showLeaderboard(users));
 }
 
 function persistScore(score) {
