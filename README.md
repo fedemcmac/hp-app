@@ -1,6 +1,6 @@
 # Harry Potter Trivia
 
-Harry Potter Trivia is a small quiz game based on the Harry Potter series.
+Harry Potter Trivia is a quiz game based on the Harry Potter series.
 
 ![](hp-app-gif.gif)
 
