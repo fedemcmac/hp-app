@@ -28,12 +28,14 @@ function fetchUsers() {
 }
 
 function backToMenu() {
-  document.querySelector("table").remove();
+  leaderboardBtnDiv.innerText = "Leaderboard";document.querySelector("table").remove();
   restartAnimation(questionP, "fadeIn");
   quizForm.style.display = "block";
   leaderboardBtnDiv.innerText = "Leaderboard";
   leaderboardBtnDiv.addEventListener("click", function handler(event) {
     event.target.removeEventListener("click", handler);
+    
+    
 
     fetchUsers();
   });
@@ -145,6 +147,7 @@ function postUser(username) {
 }
 
 function userCreated(userObj) {
+  nameDiv = document.querySelector('.top-left')
   user = userObj;
   restartAnimation(questionP);
   questionP.innerHTML = `Greetings ${
@@ -153,6 +156,7 @@ function userCreated(userObj) {
   document.querySelector("input").remove();
   submitBtn.style.display = "none";
   setTimeout(startGameMessage, 4500);
+  nameDiv.innerText = userObj.name
 }
 
 function startGameMessage() {
